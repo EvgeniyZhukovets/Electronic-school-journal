@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Группы</th>
+    </tr>
+    <th:block th:each="group : ${groups}">
+        <tr>
+            <td th:text="${group.getTitle()}"></td>
+        </tr>
+    </th:block>
+</table>
+<form method="post" name="groupForm">
+    <label>My new group is</label>
+    <input type="text" name="title" placeholder="Title"/>
+    <input type="submit" value="Create Group"/>
+</form>
+</body>
+</html>

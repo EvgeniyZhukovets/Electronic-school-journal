@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Предметы</th>
+    </tr>
+    <th:block th:each="subject : ${subjects}">
+        <tr>
+            <td th:text="${subject.getTitle()}"></td>
+        </tr>
+    </th:block>
+</table>
+<form method="post" name="subjectForm">
+    <label>My new subject is</label>
+    <input type="text" name="title" placeholder="Title"/>
+    <input type="submit" value="Create Subject"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teachers</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Все предметы преподавателя</th>
+        <th>Все группы преподавателя</th>
+    </tr>
+    <th:block th:each="teacher : ${teachers}">
+        <tr>
+            <td th:text="${teacher.getSurname()}"></td>
+            <td th:text="${teacher.getName()}"></td>
+            <td th:text="${teacher.getPatronymic()}"></td>
+            <td>
+                <a th:text="'See all '+${teacher.getSurname()}+'`s subjects'" th:href="@{'/teacher/'+${teacher.getId()}+'/subject'}"></a>
+            </td>
+            <td>
+                <a th:text="'See all '+${teacher.getSurname()}+'`s groups'" th:href="@{'/teacher/'+${teacher.getId()}+'/group'}"></a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<form method="post" name="teacherForm">
+    <label>My new teacher is</label>
+    <input type="text" name="name" placeholder="Name"/>
+    <input type="text" name="surname" placeholder="Surname"/>
+    <input type="text" name="patronymic" placeholder="Patronymic"/>
+    <input type="submit" value="Add Teacher"/>
+</form>
+</body>
+</html>

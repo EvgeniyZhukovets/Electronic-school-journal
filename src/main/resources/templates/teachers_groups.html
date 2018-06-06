@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Группы</th>
+    </tr>
+    <th:block th:each="group : ${groups}">
+        <tr>
+            <td th:text="${group.getTitle()}"></td>
+        </tr>
+    </th:block>
+</table>
+<form method="post" name="subjectForm">
+    <label>My new group is</label>
+    <select name="id">
+        <option th:each="group : ${allGroups}"
+                th:value="${group.getId()}"
+                th:text="${group.getTitle()}"></option>
+    </select>
+    <input type="submit" value="Add group"/>
+</form>
+<a href="/teacher">Back to teachers list</a>
+</body>
+</html>

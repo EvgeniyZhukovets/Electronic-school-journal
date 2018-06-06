@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Предметы</th>
+    </tr>
+    <th:block th:each="subject : ${subjects}">
+        <tr>
+            <td th:text="${subject.getTitle()}"></td>
+        </tr>
+    </th:block>
+</table>
+<form method="post" name="subjectForm">
+    <label>Add subject to student </label>
+    <select name="id">
+        <option th:each="subject : ${allSubjects}"
+                th:value="${subject.getId()}"
+                th:text="${subject.getTitle()}"></option>
+    </select>
+    <input type="submit" value="Add subject"/>
+</form>
+<a href="/students">Back to students list</a>
+</body>
+</html>

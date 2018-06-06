@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Оценка</th>
+    </tr>
+    <th:block th:each="assess : ${assessment}">
+        <tr>
+            <td th:text="${assess.getAssessment()}"></td>
+        </tr>
+    </th:block>
+</table>
+<td>
+    <form method="post" name="assessForm">
+        <input type="number" name="assessment">
+        <input type="submit" value="Change"/>
+    </form>
+</td>
+<a th:text="'Back to student profile'" th:href="'/teacher/'+${teacher_id}+'/subject/'+${subject_id}+'/student'"></a>
+</body>
+</html>

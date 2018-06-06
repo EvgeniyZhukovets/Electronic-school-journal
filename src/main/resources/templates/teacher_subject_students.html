@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Дата рождения</th>
+        <th>Группа</th>
+        <th>Оценки</th>
+    </tr>
+    <th:block th:each="student : ${students}">
+        <tr>
+            <td th:text="${student.getSurname()}"></td>
+            <td th:text="${student.getName()}"></td>
+            <td th:text="${student.getPatronymic()}"></td>
+            <td th:text="${student.getBirthDate()}"></td>
+            <td th:text="${student.getGroup().getTitle()}"></td>
+            <td>
+                <a th:text="'See all '+${student.getSurname()}+'`s assessments'" th:href="'student/'+${student.getId()}"></a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<a th:text="'Back to subjects list'" th:href="'/teacher/'+${teacher_id}+'/subject'"></a>
+</body>
+</html>

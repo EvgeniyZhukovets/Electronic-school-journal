@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Дата рождения</th>
+        <th>Группа</th>
+    </tr>
+    <th:block th:each="student : ${students}">
+        <tr>
+            <td th:text="${student.getSurname()}"></td>
+            <td th:text="${student.getName()}"></td>
+            <td th:text="${student.getPatronymic()}"></td>
+            <td th:text="${student.getBirthDate()}"></td>
+            <td th:text="${student.getGroup().getTitle()}"></td>
+            <td>
+                <a th:text="'See all '+${student.getSurname()}+'`s subjects'" th:href="@{'/students/'+${student.getId()}+'/subject'}"></a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<form method="post" name="studentForm">
+    <label>My new student is</label>
+    <input type="text" name="name" placeholder="Name"/>
+    <input type="text" name="surname" placeholder="Surname"/>
+    <input type="text" name="patronymic" placeholder="Patronymic"/>
+    <input type="text" id="basicDate" name="birthDate" placeholder="BirthDate"/>
+    <select name="group_id">
+        <option th:each="group : ${groups}"
+                th:value="${group.getId()}"
+                th:text="${group.getTitle()}"></option>
+    </select>
+    <input type="submit" value="Create Student"/>
+</form>
+</body>
+</html>
