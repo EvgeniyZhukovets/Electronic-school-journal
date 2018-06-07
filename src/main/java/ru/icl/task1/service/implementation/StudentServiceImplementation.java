@@ -1,20 +1,30 @@
 package ru.icl.task1.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import ru.icl.task1.ResultEntity.AvgResultEntity;
 import ru.icl.task1.dto.IdDto;
 import ru.icl.task1.dto.StudentDto;
+import ru.icl.task1.model.Assessment;
 import ru.icl.task1.model.Student;
 import ru.icl.task1.model.Teacher;
-import ru.icl.task1.repository.GroupRepository;
-import ru.icl.task1.repository.StudentRepository;
-import ru.icl.task1.repository.SubjectRepository;
-import ru.icl.task1.repository.TeacherRepository;
+import ru.icl.task1.repository.*;
 import ru.icl.task1.service.StudentService;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentServiceImplementation implements StudentService {
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     StudentRepository studentRepository;
@@ -27,6 +37,9 @@ public class StudentServiceImplementation implements StudentService {
 
     @Autowired
     GroupRepository groupRepository;
+
+    @Autowired
+    AssessmentRepository assessmentRepository;
 
     @Override
     public List<Student> findAll() {
@@ -60,5 +73,13 @@ public class StudentServiceImplementation implements StudentService {
         return student;
     }
 
+    @Override
+    public List getTopStudentsASC() {
+        return assessmentRepository.assessmentAverageASC();
+    }
 
+    @Override
+    public List getTopStudentsDESC() {
+        return assessmentRepository.assessmentAverageDESC();
+    }
 }

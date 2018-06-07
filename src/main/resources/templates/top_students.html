@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Топ</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Оценка</th>
+    </tr>
+    <th:block th:each="temp : ${avg}">
+        <tr>
+            <td th:text="${temp[0]}"></td>
+            <td th:text="${temp[1]}"></td>
+            <td th:text="${temp[2]}"></td>
+            <td th:text="${temp[3]}"></td>
+        </tr>
+    </th:block>
+</table>
+<a href="/teacher">Back to teachers list</a>
+</body>
+</html>

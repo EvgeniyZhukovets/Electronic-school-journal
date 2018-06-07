@@ -97,4 +97,17 @@ public class TeacherController {
         return "redirect:/teacher/" + id + "/group";
     }
 
+    @GetMapping("teacher/student/top/asc")
+    public String getTopStudentsASC(Model model) {
+        model.addAttribute("avg", studentService.getTopStudentsASC());
+
+        return "top_students";
+    }
+
+    @GetMapping("teacher/student/top/desc")
+    public String getTopStudentsDESC(Model model) {
+        model.addAttribute("avg", studentService.getTopStudentsDESC());
+
+        return "top_students";
+    }
 }
