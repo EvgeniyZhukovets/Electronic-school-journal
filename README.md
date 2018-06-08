@@ -9,4 +9,5 @@ Simple electronic school journal
 5) вывод информации о лидерах и отстающих (по 3 человека) по среднему баллу по всем предметам.
 
 ИСПОЛЬЗОВАЛОСЬ
+
 PostgreSQL, Spring Boot, Spring Data JPA
